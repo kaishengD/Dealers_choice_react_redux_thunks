@@ -15,6 +15,17 @@ const Trainer = db.define('trainer',{
         allowNull:false
     }
 });
+const Pokemon = db.define('pokemon',{
+    id:{
+        type:UUID,
+        defaultValue: UUIDV4,
+        primaryKey:true
+    },
+    name:{
+        type: Sequelize.STRING,
+        allowNull:false
+    }
+});
 
 Trainer.generateRandom = function(){
     return this.create({name:`Trainer ${Math.floor(Math.random()*100)}`})
@@ -29,12 +40,18 @@ const syncAndSeed = async()=>{
             return Trainer.create({name})
         })
     )
+    const [pikachu,bulbasaur,squirtle,charmander,staryu,psyduck,togepi,goldeen,starmie,geodude,bonsly,zubat] = await Promise.all(
+        ['pikachu','bulbasaur','squirtle','charmander','staryu','psyduck','togepi','goldeen','starmie','geodude','bonsly','zubat'].map(name=>{
+            return Pokemon.create({name})
+        })
+    )
     console.log('data seeded')
 };
 
 module.exports = {
     models:{
         Trainer,
+        Pokemon
     },
     db,
     syncAndSeed

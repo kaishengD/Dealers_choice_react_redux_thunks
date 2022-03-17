@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const res = require('express/lib/response');
-const {db , models:{Trainer}} = require('./db')
+const {db , models:{Trainer,Pokemon}} = require('./db')
 router.post('/trainers',async(req,res,next)=>{
     try{
         const trainer = await Trainer.generateRandom();
@@ -23,6 +23,15 @@ router.delete('/trainers/:id',async(req,res,next)=>{
 router.get('/trainers',async(req,res,next)=>{
     try{
         const trainers = await Trainer.findAll()
+        res.send(trainers)
+    }catch(error){
+        next(error)
+    }
+
+})
+router.get('/pokemons',async(req,res,next)=>{
+    try{
+        const trainers = await Pokemon.findAll()
         res.send(trainers)
     }catch(error){
         next(error)

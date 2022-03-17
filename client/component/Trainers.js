@@ -1,31 +1,18 @@
-import axios from "axios";
 import React, { Component } from "react";
-
-class Trainers extends Component{
-    constructor(){
-        super(),
-        this.state = {
-            trainers:[]
-        }
-    }
-
-    async componentDidMount(){
-        const trainers = (await axios.get('/api/trainers')).data
-        this.setState({trainers})
-    }
-    render(){
-        return(
-            <div>
-                {this.state.trainers.map((trainer)=>{
-                return(
-                    <div>
-                        <li key={trainer.id}>{trainer.name}</li>
-                    </div>)
-                })}
-            </div>
-        )
-    }
-
+import {connect} from 'react-redux'
+import store from "./store";
+const Trainers = (props)=>{
+    const trainers = props.trainers
+    console.log(trainers)
+    return(
+        <div>
+            {trainers.map((trainer)=>{
+            return(
+                <li key={trainer.id}>{trainer.name}</li>
+            )})
+            }
+        </div>
+    )
 }
 
-export default Trainers;
+export default connect(state=>state)(Trainers);
