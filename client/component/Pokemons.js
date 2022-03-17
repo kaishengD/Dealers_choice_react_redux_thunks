@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import {connect} from 'react-redux'
 class Pokemons extends Component{
     constructor(){
         super(),
