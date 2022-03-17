@@ -1,8 +1,5 @@
-const router = require('./api');
-
 const express = require('express')
 const {syncAndSeed } = require('./db');
-const { append } = require('express/lib/response');
 const path = require('path');
 const port = 3000;
 const app = express();
