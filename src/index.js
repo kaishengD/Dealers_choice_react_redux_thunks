@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Nav from '../client/component/Nav'
-
+import Trainers from '../client/component/Trainers';
 class App extends React.Component{
     // constructor(){
     //     super();
@@ -43,8 +43,12 @@ class App extends React.Component{
             //         // return <li key={trainer.id}>{trainer.name}<button onClick={()=>this.delete(trainer)}>x</button></li>
             //         return <li key={trainer.id}>{trainer.name}</li>
             //     })}
-            // </div>   
-            <Nav />
+            // </div>
+            <div>
+                <Nav />
+                <Trainers />
+            </div>   
+
     )}
 }
 
